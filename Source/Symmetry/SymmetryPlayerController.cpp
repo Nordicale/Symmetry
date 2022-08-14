@@ -25,6 +25,8 @@ void ASymmetryPlayerController::PlayerTick(float DeltaTime)
 		// Look for the touch location
 		FVector HitLocation = FVector::ZeroVector;
 		FHitResult Hit;
+		
+		/* Commenting out touch support
 		if(bIsTouch)
 		{
 			GetHitResultUnderFinger(ETouchIndex::Touch1, ECC_Visibility, true, Hit);
@@ -33,6 +35,8 @@ void ASymmetryPlayerController::PlayerTick(float DeltaTime)
 		{
 			GetHitResultUnderCursor(ECC_Visibility, true, Hit);
 		}
+
+		*/
 		HitLocation = Hit.Location;
 
 		// Direct the Pawn towards that location
@@ -57,10 +61,11 @@ void ASymmetryPlayerController::SetupInputComponent()
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ASymmetryPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &ASymmetryPlayerController::OnSetDestinationReleased);
 
+	/*
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ASymmetryPlayerController::OnTouchPressed);
-	InputComponent->BindTouch(EInputEvent::IE_Released, this, &ASymmetryPlayerController::OnTouchReleased);
-
+	InputComponent->BindTouch(EInputEvent::IE_Released, this, &ASymmetryPlayerController::OnTouchReleased); }*
+	*/
 }
 
 void ASymmetryPlayerController::OnSetDestinationPressed()
@@ -91,6 +96,8 @@ void ASymmetryPlayerController::OnSetDestinationReleased()
 	}
 }
 
+/* Commenting out touch support
+
 void ASymmetryPlayerController::OnTouchPressed(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	bIsTouch = true;
@@ -102,3 +109,5 @@ void ASymmetryPlayerController::OnTouchReleased(const ETouchIndex::Type FingerIn
 	bIsTouch = false;
 	OnSetDestinationReleased();
 }
+
+*/
